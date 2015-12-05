@@ -47,7 +47,6 @@ end
 function count_armor_of_type(armor, armortypes)
   c = {}
   for i, item in ipairs(armortypes) do
-    print(item)
     count = 0;
     oftype = {}
     mats = {}
@@ -55,7 +54,6 @@ function count_armor_of_type(armor, armortypes)
     for j, k in ipairs(armor) do
       --print(k.subtype.name)
       if item == k._type then
-        print('got here')
         count = count + 1
         table.insert(oftype, k)
         if k.getQuality(k) >= 5 then
@@ -65,10 +63,10 @@ function count_armor_of_type(armor, armortypes)
       end
     end
     for x,y in ipairs(oftype) do
-      print(y)
+      --print(y)
     end
     v = dfhack.script_environment('stocksfuncs').count_each(oftype)
-    print(item)
+    --print(item)
     str = string.match(tostring(item),"<type: item_(.+)st>").."  total: "..count..' | '..countMasterw.."*"
     --str = dfhack.script_environment('stocksfuncs').get_type(item)..'  total: '..count..' | '..countMasterw..'*'
    -- print(str)
