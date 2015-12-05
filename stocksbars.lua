@@ -6,7 +6,7 @@ require('hack/scripts/stocksfuncs')
 dofile('hack/scripts/stocksfuncs.lua');
 
 
-get_bars()
+
 
 function get_bars()
   
@@ -24,3 +24,5 @@ function get_bars()
   c = dfhack.script_environment('stocksfuncs').count_each(bars)
   --print(c)
 end
+
+get_bars()
