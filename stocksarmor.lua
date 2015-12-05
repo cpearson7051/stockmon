@@ -94,7 +94,7 @@ function count_armor_of_type(armor, armortypes)
     end
     v = dfhack.script_environment('stocksfuncs').count_each(oftype)
     --print(item)
-    str = '--'..item..' total: '..count..' | '..countMasterw..'*'
+    str = item:upper()..' total: '..count..' | '..countMasterw..'*'
     --str = string.match(tostring(item),"<type: item_(.+)st>").."  total: "..count..' | '..countMasterw.."*"
     --str = dfhack.script_environment('stocksfuncs').get_type(item)..'  total: '..count..' | '..countMasterw..'*'
    -- print(str)
