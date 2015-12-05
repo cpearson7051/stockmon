@@ -5,9 +5,6 @@ local utils = require('utils');
 require('hack/scripts/stocksfuncs')
 dofile('hack/scripts/stocksfuncs.lua');
 
-
-
-
 function get_ores()
   
   local b = dfhack.script_environment('stocksfuncs').get_all_items()
@@ -36,6 +33,11 @@ function get_ores()
   end
   --all ores retrieved, now sort and display
   c = dfhack.script_environment('stocksfuncs').count_each(ores)
+  for i, item in ipairs(c) do
+    strlen = string.len(item)
+    str = string.match(item,"(.+) | (.+)")
+    print(str)
+  end
   --print(c)
 end
 

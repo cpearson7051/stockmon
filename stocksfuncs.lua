@@ -85,7 +85,8 @@ function count_each(list)
     g = dfhack.matinfo.decode(item).material.state_name.Solid
     --print(g)
   end
-  run_numbers(types, list)
+  counts = run_numbers(types, list)
+  return counts
 end
 
 function check_list(item, types)
@@ -106,7 +107,7 @@ function run_numbers(types, list)
   counts = {}
   for i, j in ipairs(types) do
     num = 0;
-    
+    mw = 0;
     g = dfhack.matinfo.decode(j).material.state_name.Solid
     --print(g..' check against')
     for k, v in ipairs(list) do
@@ -117,17 +118,52 @@ function run_numbers(types, list)
         num = num + 1;
         --print('found match')
       end
+      if v.getQuality(v) >= 5 then
+        mw = mw + 1;
+      end
     end
-    str = g..' '..num;
+    str = g..' '..num..' | '..mw..'*';
     --print(str)
     table.insert(counts, str)
     --print(g..' done')
   end
   
   for i, j in ipairs(counts) do
-    print(j)
+    --print(j)
   end
   return counts
+end
+
+
+function get_ores()
+  
+  --local b = dfhack.script_environment('stocksfuncs').get_all_items()
+  ores = {}
+  for i, item in ipairs(b) do
+    c = dfhack.script_environment('stocksfuncs').get_type(item)
+    
+    if c == "boulder" then
+      mat = dfhack.matinfo.decode(item)
+      p = df.global.world.raws.inorganics[mat.index].metal_ore.mat_index
+      count = 0
+      ore = false
+      for x,y in ipairs(p) do
+        count = count + 1
+      end
+      if count > 0 then
+        ore = true
+      end
+
+      if ore == true then
+        table.insert(ores, item)
+        d = item
+        g = dfhack.matinfo.decode(item).material.state_name.Solid
+      end
+    end
+  end
+  --all ores retrieved, now sort and display
+  c = dfhack.script_environment('stocksfuncs').count_each(ores)
+  --print(c)
 end
 --------------------------------------
 --end of bars and ores functions.

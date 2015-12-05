@@ -22,6 +22,12 @@ function get_bars()
   end
   --all bars retrieved, now sort and display
   c = dfhack.script_environment('stocksfuncs').count_each(bars)
+  for i, item in ipairs(c) do
+    strlen = string.len(item)
+    str = string.match(item,"(.+) | (.+)")
+    print(str)
+   -- print(item)
+  end
   --print(c)
 end
 
