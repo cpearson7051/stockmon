@@ -75,7 +75,7 @@ function count_each(list)
   --print(temp)
   for i, item in ipairs(list) do
     g = dfhack.matinfo.decode(item).material.state_name.Solid
-   -- print(g)
+    --print(g)
     a = check_list(g, types)
     if a == false then
       table.insert(types, item)

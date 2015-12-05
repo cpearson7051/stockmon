@@ -26,12 +26,13 @@ function count_armor_types(armor)
   for i, item in ipairs(armor) do
     typestored = false
     for j, k in ipairs(armortypes) do 
-      if item._type == k._type then
+      if item._type == k then
+        --print('item'..item)
         typestored = true
       end
     end
     if typestored == false then
-      table.insert(armortypes, item)
+      table.insert(armortypes, item._type)
     end
   end
   for i, item in ipairs(armortypes) do
@@ -46,14 +47,17 @@ end
 function count_armor_of_type(armor, armortypes)
   c = {}
   for i, item in ipairs(armortypes) do
+    print(item)
     count = 0;
     oftype = {}
     mats = {}
     countMasterw = 0;
     for j, k in ipairs(armor) do
-      if item._type == k._type then
+      --print(k.subtype.name)
+      if item == k._type then
+        print('got here')
         count = count + 1
-        table.insert(oftype, item)
+        table.insert(oftype, k)
         if k.getQuality(k) >= 5 then
           countMasterw = countMasterw + 1
         end
@@ -61,11 +65,13 @@ function count_armor_of_type(armor, armortypes)
       end
     end
     for x,y in ipairs(oftype) do
-      --print(y)
+      print(y)
     end
     v = dfhack.script_environment('stocksfuncs').count_each(oftype)
-    
-    str = dfhack.script_environment('stocksfuncs').get_type(item)..'  total: '..count..' | '..countMasterw..'*'
+    print(item)
+    str = string.match(tostring(item),"<type: item_(.+)st>").."  total: "..count..' | '..countMasterw.."*"
+    --str = dfhack.script_environment('stocksfuncs').get_type(item)..'  total: '..count..' | '..countMasterw..'*'
+   -- print(str)
     table.insert(c, str)
     for x, y in ipairs(v) do
       --print(y)
