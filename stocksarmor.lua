@@ -108,6 +108,7 @@ function count_armor_of_type(armor, armortypes)
       table.insert(c, vstr)
       
     end
+    countMasterw = 0;
     sep = ' '
     table.insert(c, sep)
   end
